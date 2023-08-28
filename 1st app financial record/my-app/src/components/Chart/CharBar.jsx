@@ -9,7 +9,10 @@ function CharBar(props) {
   return (
     <div className="chart-bar">
       <div className="chart-bar__inner">
-        <div className="chart-bar__fill" style={{ height: barFillHight }}></div>
+        <div
+          className="chart-bar__fill"
+          style={{ height: barFillHight, backgroundColor: props.color }}
+        ></div>
       </div>
       <div className="chart-bar__lable">{props.lable}</div>
     </div>
