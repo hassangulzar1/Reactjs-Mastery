@@ -4,39 +4,33 @@ import ResetBtn from "../../UI/1-Reset Button/ResetBtn";
 import Calculate from "../../UI/2-CalculateBtn/Calculate";
 
 const Form = (props) => {
-  const [currSaving, setCurrSaving] = useState("");
-  const [yrSaving, setYrSaving] = useState("");
-  const [expIntYr, setExpIntYr] = useState("");
-  const [duration, setDuration] = useState("");
+  const [currValues, setCurrValues] = useState({
+    currSaving: "",
+    yrSaving: "",
+    expIntYr: "",
+    duration: "",
+  });
 
-  const currSavingHandler = (event) => {
-    setCurrSaving(event.target.value);
-  };
-  const yearSavingHandler = (event) => {
-    setYrSaving(event.target.value);
-  };
-  const expectedInerestHandler = (event) => {
-    setExpIntYr(event.target.value);
-  };
-  const durationHandler = (event) => {
-    setDuration(event.target.value);
+  //! Inputs Handler
+  const inputChangeHandler = (e) => {
+    setCurrValues((prevState) => {
+      return { ...prevState, [e.target.name]: e.target.value };
+    });
   };
 
   //! OnSubmitHandler Code
   const onSubmitHandler = (event) => {
     event.preventDefault();
+    props.data(currValues);
+    for (const i in currValues) {
+      currValues[i] = "";
+    }
+  };
 
-    props.data({
-      saving: currSaving,
-      yearlySaving: yrSaving,
-      expectedInt: expIntYr,
-      duration: duration,
-    });
-
-    setCurrSaving("");
-    setYrSaving("");
-    setExpIntYr("");
-    setDuration("");
+  //! On Reseting Everything
+  const reseting = () => {
+    setCurrValues({ currSaving: "", yrSaving: "", expIntYr: "", duration: "" });
+    props.reset();
   };
 
   return (
@@ -45,19 +39,19 @@ const Form = (props) => {
         <p>
           <label htmlFor="current-savings">Current Savings ($)</label>
           <input
-            value={currSaving}
+            value={currValues.currSaving}
+            name="currSaving"
             type="number"
-            id="current-savings"
-            onChange={currSavingHandler}
+            onChange={inputChangeHandler}
           />
         </p>
         <p>
           <label htmlFor="yearly-contribution">Yearly Savings ($)</label>
           <input
-            value={yrSaving}
+            value={currValues.yrSaving}
             type="number"
-            id="yearly-contribution"
-            onChange={yearSavingHandler}
+            name="yrSaving"
+            onChange={inputChangeHandler}
           />
         </p>
       </div>
@@ -67,24 +61,24 @@ const Form = (props) => {
             Expected Interest (%, per year)
           </label>
           <input
-            value={expIntYr}
+            value={currValues.expIntYr}
+            name="expIntYr"
             type="number"
-            id="expected-return"
-            onChange={expectedInerestHandler}
+            onChange={inputChangeHandler}
           />
         </p>
         <p>
           <label htmlFor="duration">Investment Duration (years)</label>
           <input
-            value={duration}
+            value={currValues.duration}
+            name="duration"
             type="number"
-            id="duration"
-            onChange={durationHandler}
+            onChange={inputChangeHandler}
           />
         </p>
       </div>
       <p className={Styles.actions}>
-        <ResetBtn>Reset</ResetBtn>
+        <ResetBtn onReset={reseting}>Reset</ResetBtn>
         <Calculate>Calculate</Calculate>
       </p>
     </form>
