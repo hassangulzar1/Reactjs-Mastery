@@ -5,18 +5,23 @@ import UserList from "./Components/2-User List/UserList";
 function App() {
   const [usersData, setUsersData] = useState([]);
 
-  const statedUpData = (data) => {
+  const statedUpData = (data1) => {
     //! changing state logic
     setUsersData((prevState) => {
+      let data = { ...data1, id: Math.random().toString() };
       return [...prevState, data];
     });
   };
-  // for Changin list brightness
-
+  //! for deleting particular list
+  const deleting = (id) => {
+    setUsersData((prevState) => {
+      return prevState.filter((items) => items.id !== id);
+    });
+  };
   return (
     <>
       <AddUser onSubmit={statedUpData} />;
-      <UserList data={usersData} />;
+      <UserList del={deleting} data={usersData} />;
     </>
   );
 }

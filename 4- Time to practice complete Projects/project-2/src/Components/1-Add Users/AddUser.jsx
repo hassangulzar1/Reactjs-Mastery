@@ -8,8 +8,7 @@ const AddUser = (props) => {
     age: "",
   });
   //! Notification States
-  const [initalNoti, setInitialNoti] = useState(true);
-  const [text, setText] = useState("");
+  const [text, setText] = useState();
 
   //!  On input Changing
   const onChangeHandler = (event) => {
@@ -24,12 +23,10 @@ const AddUser = (props) => {
 
     //! Notification Logic
     if (userInput.name === "" || userInput.age === "") {
-      setInitialNoti(false);
       setText("please enter a valid number and age (non-empty values)");
       return;
     } else if (userInput.age < 1) {
       setText("Please enter a valid age (> 0)");
-      setInitialNoti(false);
       return;
     }
 
@@ -41,17 +38,13 @@ const AddUser = (props) => {
   };
 
   //! on Cancle logic
-  const onCancling = (bolian) => {
-    setInitialNoti(bolian);
+  const onCancling = () => {
+    setText(null);
   };
 
   return (
     <div className=" d-flex justify-content-center">
       <Form
-        style={{
-          zIndex: !initalNoti && "-1",
-          filter: !initalNoti && "brightness(50%)",
-        }}
         className=" bg-light w-50 mt-5 px-4 py-3 rounded-4"
         onSubmit={submitHandler}
       >
@@ -78,7 +71,8 @@ const AddUser = (props) => {
           addUser
         </Button>
       </Form>
-      {!initalNoti && <Notification text={text} onCancle={onCancling} />}
+
+      {text && <Notification text={text} onCancle={onCancling} />}
     </div>
   );
 };

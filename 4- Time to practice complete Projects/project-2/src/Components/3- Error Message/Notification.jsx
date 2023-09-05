@@ -3,11 +3,12 @@ import classes from "./Notification.module.css";
 import Button from "react-bootstrap/Button";
 const Notification = (props) => {
   const cancleNotiHandler = () => {
-    props.onCancle(true);
+    props.onCancle();
   };
 
   return (
-    <div style={{ zIndex: "1" }}>
+    <div>
+      <div className={`${classes.backdrop}`} />
       <div className={`${classes.width}`}>
         <h3 className=" bg-danger m-0 text-light py-2 px-2 rounded-top">
           Invalid Input
