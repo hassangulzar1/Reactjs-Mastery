@@ -1,0 +1,7 @@
+.width {
+  width: 50vw;
+  position: fixed; /* or absolute */
+  top: 40%;
+  left: 25%;
+  border-radius: 20px;
+}
