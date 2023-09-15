@@ -18,7 +18,6 @@ class Users extends Component {
       return { showUsers: !curState.showUsers };
     });
   }
-
   render() {
     const usersList = (
       <ul>
