@@ -23,6 +23,7 @@ const ErrorModal = (props) => {
       </Card>
     );
   };
+
   return (
     <React.Fragment>
       {ReactDom.createPortal(
