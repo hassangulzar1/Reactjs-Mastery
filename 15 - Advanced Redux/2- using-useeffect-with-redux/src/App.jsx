@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 
 function App() {
   const counterToggle = useSelector((state) => state.ui.cartIsVisible);
+  const cart = useSelector((state) => state.ui.cart);
+  console.log(cart);
   return (
     <Layout>
       {counterToggle && <Cart />}
