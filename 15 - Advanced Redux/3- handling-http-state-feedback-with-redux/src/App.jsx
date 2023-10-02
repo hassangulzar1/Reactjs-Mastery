@@ -15,6 +15,7 @@ function App() {
   const notification = useSelector((state) => state.ui.notification);
 
   useEffect(() => {
+    console.log("use effect call");
     if (isInitial) {
       isInitial = false;
       return;
