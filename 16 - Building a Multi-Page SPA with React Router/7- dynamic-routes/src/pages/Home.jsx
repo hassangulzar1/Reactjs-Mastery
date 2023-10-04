@@ -5,6 +5,7 @@ const Home = () => {
   const navigateHandler = () => {
     navigate("/products");
   };
+
   return (
     <>
       <h1>My Home page</h1>
