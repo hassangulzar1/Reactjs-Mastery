@@ -7,11 +7,6 @@ const EventDetailPage = () => {
   return (
     <>
       <EventItem event={data.event} />
-      <p>
-        <Link to=".." relative="path">
-          Back
-        </Link>
-      </p>
     </>
   );
 };
