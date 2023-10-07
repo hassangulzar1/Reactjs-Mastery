@@ -8,9 +8,6 @@ const Error = () => {
   let title = "And error occurred!";
   let message = "Something went wrong";
   if (error.status === 500) {
-    // message = JSON.parse(error.data).message;
-
-    //!with json helper function
     message = error.data.message;
   }
   if (error.status === 404) {

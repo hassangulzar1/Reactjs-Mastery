@@ -1,5 +1,5 @@
 import EventsList from "../components/EventsList";
-import { useLoaderData, json } from "react-router-dom";
+import { json, useLoaderData } from "react-router-dom";
 function EventsPage() {
   // use loader can use only accessible by tha same level of routes
   const data = useLoaderData();
@@ -27,7 +27,7 @@ export const loader = async () => {
     // throw new Response(JSON.stringify({ message: "Could not fetch events." }), {
     //   status: 500,
     // });
-    //! with json helper function
+
     return json(
       { message: "could not fetch events." },
       {
