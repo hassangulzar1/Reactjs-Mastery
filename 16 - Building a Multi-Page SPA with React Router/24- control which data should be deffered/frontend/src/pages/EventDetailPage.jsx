@@ -85,3 +85,6 @@ export async function action({ params, request }) {
 
   return redirect("/events");
 }
+
+// Why we used Use deffer?
+// to fetch or load data behind the scenes without navigating. And you learned about deferring data fetching. Which can be helpful if you have some slow requests some slow backend, and you wanna show a pagewithout waiting for the data to be there. Or if you have multiple pieces of data and you wanna show some data before all the data is there as we had it here with the single event and the list of events. You should not always use the fur but instead use it when you need this behavior when you need to show something before all the data is there.
