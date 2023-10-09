@@ -1,28 +1,29 @@
-import HomePage from "./pages/HomePage";
-import EventsPage, { loader as eventsLoader } from "./pages/EventsPage";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
+import EditEventPage from "./pages/EditEventPage";
+import ErrorPage from "./pages/Error";
 import EventDetailPage, {
   loader as eventDetailLoader,
   action as deleteEventAction,
 } from "./pages/EventDetailPage";
+import EventsPage, { loader as eventsLoader } from "./pages/EventsPage";
+import EventsRootLayout from "./pages/EventsRoot";
+import HomePage from "./pages/HomePage";
 import NewEventPage from "./pages/NewEvent";
-import EditEventPage from "./pages/EditEventPage";
-import EventsRoot from "./pages/EventsRoot";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root from "./pages/Root";
-import Error from "./pages/Error";
-
+import RootLayout from "./pages/Root";
 import { action as manipulateEventAction } from "./components/EventForm";
-const routes = createBrowserRouter([
+import NewsletterPage, { action as newsletterAction } from "./pages/Newsletter";
+
+const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
-    //! this error is displayed when we have any kind of error in routes
-    errorElement: <Error />,
+    element: <RootLayout />,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
       {
         path: "events",
-        element: <EventsRoot />,
+        element: <EventsRootLayout />,
         children: [
           {
             index: true,
@@ -53,11 +54,17 @@ const routes = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "newsletter",
+        element: <NewsletterPage />,
+        action: newsletterAction,
+      },
     ],
   },
 ]);
+
 function App() {
-  return <RouterProvider router={routes} />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
