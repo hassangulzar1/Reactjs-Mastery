@@ -8,13 +8,18 @@ const animationTiming = {
 };
 
 const Modal = (props) => {
-  const cssClasses = ["Modal"];
   return (
     <Transition
       mountOnEnter
       unmountOnExit
       in={props.show}
       timeout={animationTiming}
+      onEnter={() => console.log("onEnter")}
+      onEntering={() => console.log("onEntering")}
+      onEntered={() => console.log("onEntered")}
+      onExit={() => console.log("onExit")}
+      onExiting={() => console.log("onExiting")}
+      onExited={() => console.log("onExited")}
     >
       {(state) => {
         const cssClasses = [
