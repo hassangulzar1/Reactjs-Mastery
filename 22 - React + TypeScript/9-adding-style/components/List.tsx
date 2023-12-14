@@ -1,5 +1,6 @@
+import classes from "./List.module.css";
 const List: React.FC<{ text: string }> = (props) => {
-  return <li>{props.text}</li>;
+  return <li className={classes.item}>{props.text}</li>;
 };
 
 export default List;
